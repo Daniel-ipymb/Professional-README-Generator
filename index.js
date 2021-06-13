@@ -124,6 +124,8 @@ function writeToFile(fileName, data) {
 function init() {
   inquirer.prompt(questions)
     .then((response) => writeFileAsync('Markdown', generateMarkdown(response)))
+    .then(() => console.log('Your README file has been successfully created'))
+    .catch((err) => console.log(err));
 }
 
 // Function call to initialize app
