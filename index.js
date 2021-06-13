@@ -3,12 +3,13 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util')
 
-const writeFileAsync = util.promisify(fs.writeFile);
+const writeFileAsync = util.promisify(writeToFile);
 
 
 // TODO: Create an array of questions for user input
-const questions = [
-  {
+const promptUser = () => {
+  return inquirer.prompt([
+    {
     type: 'input',
     message: "What is the title of your project?",
     name: 'title',
@@ -19,8 +20,8 @@ const questions = [
         }
         return true;
     }
-  },
-  {
+    },
+    {
     type: 'input',
     message: "Give a short description of your project including your motivations and reason for building the project",
     name: 'description',
@@ -31,44 +32,45 @@ const questions = [
         }
         return true;
     }
-  },
-  {
+    },
+    {
     type: 'input',
     message: "If applicable, describe the steps required to install your project for the Installation section.",
     name: 'installation'
-  },
-  {
+    },
+    {
     type: 'input',
     message: "Provide instructions and examples of your project in use for the Usage section.",
     name: 'usage'
-  },
-  {
+    },
+    {
     type: 'input',
     message: "If applicable, provide guidelines on how other developers can contribute to your project.",
     name: 'contributing'
-  },
-  {
+    },
+    {
     type: 'input',
     message: "If applicable, provide any tests written for your application and provide examples on how to run them.",
     name: 'tests'
-  },
-  {
+    },
+    {
     type: 'list',
     message: "Choose a license for your project.",
     choices: ['GNU AGPLv3', 'GNU GPLv3', 'GNU LGPLv3', 'Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'The Unlicense'],
     name: 'license'
-  },
-  {
+    },
+    {
     type: 'input',
     message: 'What is your Github Username?',
     name: 'Username'
-  },
-  {
+    },
+    {
     type: 'input',
     message: 'What is your email address?',
     name: 'Email'
-  },
-]
+    },
+  ]);
+};
 
 const generateMarkdown = (response) =>
 `# ${response.title}
@@ -98,7 +100,7 @@ const generateMarkdown = (response) =>
  ${response.contributing}
 
 ## Tests
- ${respomse.tests}
+ ${response.tests}
 
 ## License
  ${response.license}
@@ -122,8 +124,8 @@ function writeToFile(fileName, data) {
 )}
 // TODO: Create a function to initialize app
 function init() {
-  inquirer.prompt(questions)
-    .then((response) => writeFileAsync('Markdown', generateMarkdown(response)))
+  promptUser()
+    .then((response) => writeFileAsync('README.md', generateMarkdown(response)))
     .then(() => console.log('Your README file has been successfully created'))
     .catch((err) => console.log(err));
 }
