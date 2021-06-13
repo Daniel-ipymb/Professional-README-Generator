@@ -121,7 +121,10 @@ function writeToFile(fileName, data) {
   err ? console.log(error) : console.log('success! Your READMe has been generated.')
 )}
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+  inquirer.prompt(questions)
+    .then((response) => writeFileAsync('Markdown', generateMarkdown(response)))
+}
 
 // Function call to initialize app
 init();
