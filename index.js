@@ -77,7 +77,7 @@ const generateMarkdown = (response) =>
 
 ## Table of Contents
 
-* [Description](#Project Description)
+* [Project Description](#Description)
 * [Installation](#Installation)
 * [Usage](#Usage)
 * [Contributions](#Contributions)
