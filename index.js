@@ -35,12 +35,12 @@ const promptUser = () => {
     },
     {
     type: 'input',
-    message: "If applicable, describe the steps required to install your project for the Installation section.",
+    message: "If applicable, describe the steps required to install your project?",
     name: 'installation'
     },
     {
     type: 'input',
-    message: "Provide instructions and examples of your project in use for the Usage section.",
+    message: "Provide instructions and examples of your project?",
     name: 'usage'
     },
     {
