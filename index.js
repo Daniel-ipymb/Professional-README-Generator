@@ -73,47 +73,6 @@ const promptUser = () => {
 };
 
 const generateMarkdown = (response) =>
-`# ${response.title}
-
-## Table of Contents
-
-* [Project Description](#Description)
-* [Installation](#Installation)
-* [Usage](#Usage)
-* [Contributions](#Contributions)
-* [Tests](#Tests)
-* [License](#License)
-* [Questions](#Questions)
-* [Username](#Username)
-* [Email](#Email)
-
-## Description
- ${response.description}
-
-## Installation
- ${response.installation}
-
-## Usage
- ${response.usage}
-
-## Contributions
- ${response.contributing}
-
-## Tests
- ${response.tests}
-
-## License
- ${response.license}
-
-## Questions
-
-## Github Username 
- ${response.Username}
-
-* [Github Link](https://github.com/${response.Username})
-
-## Email address
-For additional questions reach me at: ${response.Email}`
 
   
 
@@ -125,7 +84,7 @@ function writeToFile(fileName, data) {
 // TODO: Create a function to initialize app
 function init() {
   promptUser()
-    .then((response) => writeFileAsync('README.md', generateMarkdown(response)))
+    .then((data) => writeFileAsync('README.md', generateMarkdown(data)))
     .then(() => console.log('Your README file has been successfully created'))
     .catch((err) => console.log(err));
 }
