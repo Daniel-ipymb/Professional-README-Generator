@@ -40,22 +40,23 @@ function renderLicenseSection(license) {
   console.log(license);
   switch (license) {
     case "Apache":
-      return `The license for this project is ${renderLicenseLink(data)}`;
+      return `The license for this project is ${renderLicenseLink(license)}`;
     case "GNU":
-      return `The license for this project is ${renderLicenseLink(data)}`;
+      return `The license for this project is ${renderLicenseLink(license)}`;
     case "ISC":
-      return `The license for this project is ${renderLicenseLink(data)}`;
+      return `The license for this project is ${renderLicenseLink(license)}`;
     case "MIT":
-      return `The license for this project is ${renderLicenseLink(data)}`;
+      return `The license for this project is ${renderLicenseLink(license)}`;
     default:
       return "";
   }
 }
-
+ 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `# ${data.title}
   
+${renderLicenseBadge(data.license)}
 
 ## Table of Contents
 
@@ -70,32 +71,32 @@ function generateMarkdown(data) {
 * [Email](#Email)
 
 ## Description
- ${response.description}
+ ${data.description}
 
 ## Installation
- ${response.installation}
+ ${data.installation}
 
 ## Usage
- ${response.usage}
+ ${data.usage}
 
 ## Contributions
- ${response.contributing}
+ ${data.contributing}
 
 ## Tests
- ${response.tests}
+ ${data.tests}
 
 ## License
- ${response.license}
+ ${renderLicenseSection(data.license)}
 
 ## Questions
 
 ## Github Username 
- ${response.Username}
+ ${data.Username}
 
-* [Github Link](https://github.com/${response.Username})
+* [Github Link](https://github.com/${data.Username})
 
 ## Email address
-For additional questions reach me at: ${response.Email}`;
+For additional questions reach me at: ${data.Email}`;
 }
 
 module.exports = generateMarkdown;
